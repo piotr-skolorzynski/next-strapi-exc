@@ -60,7 +60,7 @@ const Footer = () => {
           ))}
         </ul>
 
-        <p className="copy">© Wavezhub - all rights reserved</p>
+        <p className="copy">© Sam's Surfcamp - all rights reserved</p>
       </div>
     </footer>
   );
