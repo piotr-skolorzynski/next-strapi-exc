@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * camp router
+ * info-block router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::camp.camp');
+module.exports = createCoreRouter('api::info-block.info-block');

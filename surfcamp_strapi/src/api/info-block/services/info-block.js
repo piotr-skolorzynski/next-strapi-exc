@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * camp service
+ * info-block service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::camp.camp');
+module.exports = createCoreService('api::info-block.info-block');

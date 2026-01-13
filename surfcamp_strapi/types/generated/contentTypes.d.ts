@@ -369,12 +369,49 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCampCamp extends Struct.CollectionTypeSchema {
-  collectionName: 'camps';
+export interface ApiInfoBlockInfoBlock extends Struct.CollectionTypeSchema {
+  collectionName: 'info_blocks';
   info: {
-    displayName: 'camp';
-    pluralName: 'camps';
-    singularName: 'camp';
+    displayName: 'InfoBlock';
+    pluralName: 'info-blocks';
+    singularName: 'info-block';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'info-block.button', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    headline: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::info-block.info-block'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    showImageRight: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    text: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInfoblocksExperienceInfoblocksExperience
+  extends Struct.SingleTypeSchema {
+  collectionName: 'infoblocks_experiences';
+  info: {
+    description: '';
+    displayName: 'Infoblocks Experience';
+    pluralName: 'infoblocks-experiences';
+    singularName: 'infoblocks-experience';
   };
   options: {
     draftAndPublish: true;
@@ -383,11 +420,49 @@ export interface ApiCampCamp extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    info_blocks: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::info-block.info-block'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::camp.camp'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::infoblocks-experience.infoblocks-experience'
+    > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInfoblocksLandingInfoblocksLanding
+  extends Struct.SingleTypeSchema {
+  collectionName: 'infoblocks_landings';
+  info: {
+    description: '';
+    displayName: 'Infoblocks Landing';
+    pluralName: 'infoblocks-landings';
+    singularName: 'infoblocks-landing';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    info_blocks: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::info-block.info-block'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::infoblocks-landing.infoblocks-landing'
+    > &
+      Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -904,7 +979,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::camp.camp': ApiCampCamp;
+      'api::info-block.info-block': ApiInfoBlockInfoBlock;
+      'api::infoblocks-experience.infoblocks-experience': ApiInfoblocksExperienceInfoblocksExperience;
+      'api::infoblocks-landing.infoblocks-landing': ApiInfoblocksLandingInfoblocksLanding;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
