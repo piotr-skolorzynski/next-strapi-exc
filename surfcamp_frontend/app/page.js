@@ -1,3 +1,17 @@
+import HeroSection from "./_components/HeroSection";
+
 export default function Home() {
-  return <main></main>;
+  const headline = (
+    <>
+      <h1>barrel.</h1>
+      <h1>your.</h1>
+      <h1>happiness.</h1>
+    </>
+  );
+
+  return (
+    <main>
+      <HeroSection headline={headline} />
+    </main>
+  );
 }
