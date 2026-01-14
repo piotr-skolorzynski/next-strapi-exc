@@ -1,7 +1,7 @@
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 const InfoBlock = ({ data }) => {
-  const { headline, text, showImageRight, image } = data;
+  const { headline, text, showImageRight, image, button } = data;
 
   return (
     <div className={`info ${showImageRight ? "info--reversed" : ""}`}>
@@ -9,7 +9,7 @@ const InfoBlock = ({ data }) => {
       <div className="info__text">
         <h2 className="info__headline">{headline}</h2>
         <BlocksRenderer content={text} />
-        <button></button>
+        {button}
       </div>
     </div>
   );
