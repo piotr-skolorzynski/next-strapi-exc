@@ -18,8 +18,10 @@ export default async function Home() {
   return (
     <main>
       <HeroSection headline={headline} />
-      {/* <InfoBlock data={infoBlockData} />
-      <InfoBlock data={{ ...infoBlockData, reversed: true }} /> */}
+
+      {infoBlocksData.map((infoBlock) => (
+        <InfoBlock key={infoBlock.id} data={infoBlock} />
+      ))}
     </main>
   );
 }

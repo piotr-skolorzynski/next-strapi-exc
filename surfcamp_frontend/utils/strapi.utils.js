@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const BASE_URL = process.env.STRAPI_BASE_URL || "http://localhost:1337/api/";
+const BASE_URL = process.env.STRAPI_BASE_URL || "http://localhost:1337";
 
 export async function fetchDataFromStrapi(endpoint, params = "pLevel=5") {
-  const url = `${BASE_URL}${endpoint}?${params}`;
+  const url = `${BASE_URL}/api/${endpoint}?${params}`;
 
   try {
     const response = await axios.get(url);
@@ -17,6 +17,6 @@ export async function fetchDataFromStrapi(endpoint, params = "pLevel=5") {
 export function processInfoBlocks(data) {
   return data.info_blocks.map((block) => ({
     ...block,
-    image: block.image.url,
+    image: BASE_URL + block.image.url,
   }));
 }
