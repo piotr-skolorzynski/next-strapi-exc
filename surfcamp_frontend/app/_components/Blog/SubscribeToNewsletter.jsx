@@ -38,6 +38,7 @@ const SubscribeToNewsletter = () => {
               value={email}
               onChange={onEmailChange}
             />
+
             <button
               className="newsletter__subscribe btn btn--medium btn--turquoise"
               type="submit"

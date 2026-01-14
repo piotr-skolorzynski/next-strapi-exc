@@ -1,5 +1,6 @@
 import HighlightArticle from "../_components/Blog/HighlightArticle";
 import SubscribeToNewsletter from "../_components/Blog/SubscribeToNewsletter";
+import FeaturedItems from "../_components/FeaturedItems/FeaturedItems";
 
 const Blog = () => {
   const highlightArticle = {
@@ -18,11 +19,58 @@ const Blog = () => {
     featuredImage: "/assets/hero-experience.png",
   };
 
+  const featuredArticles = [
+    {
+      headline:
+        "surfboard shaping and design behind the scenes of crafting the perfect board ",
+      slug: "/blog/1",
+      date: "Monady, 05th of June 2023",
+      featuredImage: "/assets/hero-experience.png",
+    },
+    {
+      headline:
+        "surfboard shaping and design behind the scenes of crafting the perfect board ",
+      slug: "/blog/1",
+      date: "Monady, 05th of June 2023",
+      featuredImage: "/assets/hero-experience.png",
+    },
+    {
+      headline:
+        "surfboard shaping and design behind the scenes of crafting the perfect board ",
+      slug: "/blog/1",
+      date: "Monady, 05th of June 2023",
+      featuredImage: "/assets/hero-experience.png",
+    },
+    {
+      headline:
+        "surfboard shaping and design behind the scenes of crafting the perfect board ",
+      slug: "/blog/1",
+      date: "Monady, 05th of June 2023",
+      featuredImage: "/assets/hero-experience.png",
+    },
+    {
+      headline:
+        "surfboard shaping and design behind the scenes of crafting the perfect board ",
+      slug: "/blog/1",
+      date: "Monady, 05th of June 2023",
+      featuredImage: "/assets/hero-experience.png",
+    },
+    {
+      headline:
+        "surfboard shaping and design behind the scenes of crafting the perfect board ",
+      slug: "/blog/1",
+      date: "Monady, 05th of June 2023",
+      featuredImage: "/assets/hero-experience.png",
+    },
+  ];
+
   return (
     <main className="blog-page">
       <HighlightArticle data={highlightArticle} />
 
       <SubscribeToNewsletter />
+
+      <FeaturedItems items={featuredArticles} />
     </main>
   );
 };
