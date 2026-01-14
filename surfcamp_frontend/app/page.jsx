@@ -5,8 +5,6 @@ import { fetchDataFromStrapi } from "../utils/strapi.utils";
 export default async function Home() {
   const infoBlocksData = await fetchDataFromStrapi("infoblocks-landing");
 
-  console.log("infoBlocksData: ", infoBlocksData);
-
   const headline = (
     <>
       <h1>barrel.</h1>
@@ -25,3 +23,5 @@ export default async function Home() {
     </main>
   );
 }
+
+export const revalidate = 300;
