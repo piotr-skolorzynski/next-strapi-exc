@@ -1,4 +1,5 @@
 import HighlightArticle from "../_components/Blog/HighlightArticle";
+import SubscribeToNewsletter from "../_components/Blog/SubscribeToNewsletter";
 
 const Blog = () => {
   const highlightArticle = {
@@ -20,6 +21,8 @@ const Blog = () => {
   return (
     <main className="blog-page">
       <HighlightArticle data={highlightArticle} />
+
+      <SubscribeToNewsletter />
     </main>
   );
 };
