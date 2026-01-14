@@ -8,7 +8,7 @@ export async function fetchDataFromStrapi(endpoint, params = "pLevel=5") {
 
   try {
     const response = await axios.get(url);
-    return processInfoBlocks(response.data.data);
+    return response.data.data;
   } catch (error) {
     console.log(error);
     throw new Error(`Could not fetch data from ${url}`);
@@ -36,4 +36,18 @@ function createInfoBlockButton(buttonData) {
       {buttonData.text}
     </Link>
   );
+}
+
+export function processBlogArticles(data) {
+  return data.map((article) => ({
+    ...article,
+    featuredImage: BASE_URL + article.featuredImage.url,
+  }));
+}
+
+export function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = { year: "numeric", month: "long", day: "2-digit" };
+
+  return date.toLocaleDateString("en-US", options);
 }

@@ -1,6 +1,18 @@
+"use client";
+import { useState } from "react";
 import FeaturedArticle from "./FeaturedArticle";
 
 const FeaturedItems = ({ headline, items }) => {
+  const [itemNumber, setItemNumber] = useState(3);
+
+  const onShowMore = () => {
+    if (itemNumber >= items.length) {
+      return setItemNumber(items.length);
+    }
+
+    setItemNumber((prevNumber) => prevNumber + 3);
+  };
+
   return (
     <section className="featured-items">
       <h3 className="featured-items__headline">
@@ -8,12 +20,16 @@ const FeaturedItems = ({ headline, items }) => {
       </h3>
 
       <div className="featured-items__container">
-        {items.map((item) => (
+        {items.slice(0, itemNumber).map((item) => (
           <FeaturedArticle key={item.slug} article={item} />
         ))}
       </div>
 
-      <button className="btn btn--medium btn--turquoise">See more</button>
+      {itemNumber < items.length && (
+        <button className="btn btn--medium btn--turquoise" onClick={onShowMore}>
+          See more
+        </button>
+      )}
     </section>
   );
 };

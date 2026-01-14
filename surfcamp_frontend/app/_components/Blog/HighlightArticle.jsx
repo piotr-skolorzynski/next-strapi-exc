@@ -9,7 +9,7 @@ const HighlightArticle = ({ data }) => {
         <h3>{headline}</h3>
         <p className="copy">{excerpt}</p>
         <Link className="btn btn--medium btn--turquoise" href={`/blog/${slug}`}>
-          read more
+          Read more
         </Link>
       </div>
 

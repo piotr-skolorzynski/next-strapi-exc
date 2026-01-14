@@ -45,10 +45,15 @@
     border-radius: 0 0 3.5rem 3.5rem;
     flex-grow: 1;
 
+    &--headline {
+      margin-bottom: 1rem;
+    }
+
     &--event {
       & h5 {
         margin-bottom: 3rem;
       }
+
       & .bold {
         margin-top: auto;
       }

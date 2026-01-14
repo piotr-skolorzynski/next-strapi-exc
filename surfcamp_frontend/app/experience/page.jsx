@@ -1,9 +1,10 @@
 import HeroSection from "../_components/HeroSection";
 import InfoBlock from "../_components/InfoBlock";
-import { fetchDataFromStrapi } from "@/utils/strapi.utils";
+import { fetchDataFromStrapi, processInfoBlocks } from "@/utils/strapi.utils";
 
 export default async function Experience() {
-  const infoBlocksData = await fetchDataFromStrapi("infoblocks-experience");
+  const infoBlocksRawData = await fetchDataFromStrapi("infoblocks-experience");
+  const infoBlocksData = processInfoBlocks(infoBlocksRawData);
 
   const headline = (
     <>
