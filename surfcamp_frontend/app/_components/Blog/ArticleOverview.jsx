@@ -17,7 +17,7 @@ const ArticleOverview = ({ article }) => {
 
         <ul className="article-overview__contents">
           {headlines.map((headline, idx) => (
-            <li key={headline.id}s>
+            <li key={headline.id}>
               <Link href={`#${headline.slug}`}>
                 {idx + 1}. {headline.headline}
               </Link>
