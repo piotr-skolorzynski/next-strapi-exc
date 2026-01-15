@@ -4,7 +4,8 @@
   "info": {
     "singularName": "blog-article",
     "pluralName": "blog-articles",
-    "displayName": "Blog Article"
+    "displayName": "Blog Article",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,13 +20,13 @@
       "type": "text"
     },
     "featuredImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "files",
         "images"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "slug": {
       "type": "string",
@@ -41,6 +42,15 @@
       "type": "boolean",
       "default": false,
       "required": false
+    },
+    "articleContent": {
+      "type": "dynamiczone",
+      "components": [
+        "blog-article.headline",
+        "blog-article.paragraph-with-image",
+        "blog-article.paragraph",
+        "blog-article.landscape-image"
+      ]
     }
   }
 }
