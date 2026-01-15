@@ -1,6 +1,7 @@
 import ArticleHeadline from "./ArticleHedline";
 import ImageTextComponent from "./ImageTextComponent";
 import ArticleParagraph from "./ArticleParagraph";
+import LandscapeImage from "./LandscapeImage";
 
 const ArticleComponent = ({ component }) => {
   const componentType = component.__component.split("blog-article.")[1];
@@ -15,7 +16,7 @@ const ArticleComponent = ({ component }) => {
     case "paragraph":
       return <ArticleParagraph paragraph={component.paragraph} />;
     case "landscape-image":
-      return <h1>Landscape Image Component</h1>;
+      return <LandscapeImage imageData={component} />;
     default:
       return <div>Unknown component type: {componentType}</div>;
   }
