@@ -1,0 +1,32 @@
+import Link from "next/link";
+
+const ArticleOverview = ({ article }) => {
+  console.log(article);
+
+  const headlines = article.articleContent.filter(
+    (component) => component.__component === "blog-article.headline"
+  );
+
+  console.log(headlines);
+
+  return (
+    <div className="article-overview">
+      <div className="article-overview__info">
+        <h3 className="article-overview__headline">In this blog</h3>
+        <h5 className="article-overview__excerpt">{article.excerpt}</h5>
+
+        <ul className="article-overview__contents">
+          {headlines.map((headline, idx) => (
+            <li key={headline.id}s>
+              <Link href={`#${headline.slug}`}>
+                {idx + 1}. {headline.headline}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default ArticleOverview;
