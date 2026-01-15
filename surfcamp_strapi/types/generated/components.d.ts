@@ -3,10 +3,13 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface BlogArticleHeadline extends Struct.ComponentSchema {
   collectionName: 'components_blog_article_headlines';
   info: {
+    description: '';
     displayName: 'headline';
   };
   attributes: {
     headline: Schema.Attribute.String & Schema.Attribute.Required;
+    isHeadlineWhite: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     slug: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

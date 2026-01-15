@@ -1,7 +1,8 @@
 {
   "collectionName": "components_blog_article_headlines",
   "info": {
-    "displayName": "headline"
+    "displayName": "headline",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,6 +14,10 @@
       "type": "string",
       "regex": "^[a-z](-?[a-z])*$",
       "required": true
+    },
+    "isHeadlineWhite": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
