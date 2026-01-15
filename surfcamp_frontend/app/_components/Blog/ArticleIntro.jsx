@@ -1,8 +1,6 @@
 import { formatDate } from "@/utils/strapi.utils";
 
 const ArticleIntro = ({ article }) => {
-  console.log(article);
-
   return (
     <div className="article-intro">
       <div className="article-intro__background">

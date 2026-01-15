@@ -1,7 +1,7 @@
 import ArticleHeadline from "./ArticleHedline";
+import ImageTextComponent from "./ImageTextComponent";
 
 const ArticleComponent = ({ component }) => {
-  console.log(component);
   const componentType = component.__component.split("blog-article.")[1];
 
   switch (componentType) {
@@ -10,7 +10,7 @@ const ArticleComponent = ({ component }) => {
         <ArticleHeadline headline={component.headline} slug={component.slug} />
       );
     case "paragraph-with-image":
-      return <h1>Paragraph with Image Component</h1>;
+      return <ImageTextComponent component={component} />;
     case "paragraph":
       return <h1>Paragraph Component</h1>;
     case "landscape-image":

@@ -5,7 +5,6 @@ import ArticleComponent from "@/app/_components/Blog/ArticleComponent";
 
 export default async function ArticlePage({ params }) {
   const { article: slug } = params;
-  console.log(params);
 
   const rawBlogData = await fetchDataFromStrapi("blog-articles");
   const blogData = processBlogArticles(rawBlogData);

@@ -1,21 +1,22 @@
 {
   "collectionName": "components_blog_article_paragraph_with_images",
   "info": {
-    "displayName": "paragraphWithImage"
+    "displayName": "paragraphWithImage",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "pargraph": {
+    "paragraph": {
       "type": "blocks",
       "required": true
     },
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "isLandscape": {
       "type": "boolean",

@@ -51,3 +51,7 @@ export function formatDate(dateString) {
 
   return date.toLocaleDateString("en-US", options);
 }
+
+export function extractImageUrl(imageData) {
+  return BASE_URL + imageData.url;
+}

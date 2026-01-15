@@ -38,6 +38,7 @@ export interface BlogArticleParagraph extends Struct.ComponentSchema {
 export interface BlogArticleParagraphWithImage extends Struct.ComponentSchema {
   collectionName: 'components_blog_article_paragraph_with_images';
   info: {
+    description: '';
     displayName: 'paragraphWithImage';
   };
   attributes: {
@@ -49,7 +50,7 @@ export interface BlogArticleParagraphWithImage extends Struct.ComponentSchema {
     isLandscape: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<true>;
-    pargraph: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    paragraph: Schema.Attribute.Blocks & Schema.Attribute.Required;
   };
 }
 
