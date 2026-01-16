@@ -34,6 +34,7 @@
   &__name-container {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
 
     & .input__container {
       width: 48%;
@@ -50,6 +51,7 @@
       margin-top: 6rem;
       margin-bottom: 2.4rem;
     }
+
     & p:first-of-type {
       margin-bottom: 8px;
     }
