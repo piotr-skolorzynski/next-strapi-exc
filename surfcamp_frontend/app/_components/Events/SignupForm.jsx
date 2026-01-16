@@ -1,17 +1,48 @@
 "use client";
 import { useState } from "react";
 import TextInput from "../TextInput";
+import axios from "axios";
+import { allDataFilledIn } from "@/utils/validation.utils";
 
 const SignupForm = ({ infoText, headline, buttonLabel }) => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
+    firstName: "ka",
+    lastName: "picl",
+    phone: "2344234",
+    email: "ka.com",
   });
+
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = {
+      data: { ...formData, isGeneralInterest: true },
+    };
+
+    if (allDataFilledIn(formData)) {
+      try {
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/participants`,
+          payload
+        );
+
+        setShowConfirmation(true);
+      } catch (error) {
+        console.log(error);
+        setErrorMessage(
+          error.response?.data?.error?.message || "Something went wrong"
+        );
+      }
+    } else {
+      setErrorMessage("Please fill out all fields");
+    }
   };
 
   return (
@@ -22,41 +53,51 @@ const SignupForm = ({ infoText, headline, buttonLabel }) => {
         {infoText}
       </div>
 
-      <form className="signup-form__form">
-        <div className="signup-form__name-container">
-          <TextInput
-            inputName="firstName"
-            label="First Name"
-            value={FormData.firstName}
-            onChange={onChange}
-          />
-
-          <TextInput
-            inputName="lastName"
-            label="Last Name"
-            value={FormData.lastName}
-            onChange={onChange}
-          />
+      {showConfirmation ? (
+        <div className="signup-form__form">
+          <h4>Thank you for signing up. We will get in touch soon!</h4>
         </div>
+      ) : (
+        <form className="signup-form__form" onSubmit={handleSubmit}>
+          <div className="signup-form__name-container">
+            <TextInput
+              inputName="firstName"
+              label="First Name"
+              value={formData.firstName}
+              onChange={onChange}
+            />
 
-        <TextInput
-          inputName="email"
-          label="Your e-mail address"
-          value={FormData.email}
-          onChange={onChange}
-        />
+            <TextInput
+              inputName="lastName"
+              label="Last Name"
+              value={formData.lastName}
+              onChange={onChange}
+            />
+          </div>
 
-        <TextInput
-          inputName="phone"
-          label="Your telephone number"
-          value={FormData.phone}
-          onChange={onChange}
-        />
+          <TextInput
+            inputName="email"
+            label="Your e-mail address"
+            value={formData.email}
+            onChange={onChange}
+          />
 
-        <button type="submit" className="btn btn--medium btn--turquoise">
-          {buttonLabel || "Stay in touch!"}
-        </button>
-      </form>
+          <TextInput
+            inputName="phone"
+            label="Your telephone number"
+            value={formData.phone}
+            onChange={onChange}
+          />
+
+          {errorMessage && (
+            <p className="copy signup-form__error">{errorMessage}</p>
+          )}
+
+          <button type="submit" className="btn btn--medium btn--turquoise">
+            {buttonLabel || "Stay in touch!"}
+          </button>
+        </form>
+      )}
     </section>
   );
 };

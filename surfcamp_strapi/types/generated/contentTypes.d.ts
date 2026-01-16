@@ -584,6 +584,7 @@ export interface ApiNewsletterSignupNewsletterSignup
 export interface ApiParticipantParticipant extends Struct.CollectionTypeSchema {
   collectionName: 'participants';
   info: {
+    description: '';
     displayName: 'Participant';
     pluralName: 'participants';
     singularName: 'participant';
@@ -608,7 +609,7 @@ export interface ApiParticipantParticipant extends Struct.CollectionTypeSchema {
       'api::participant.participant'
     > &
       Schema.Attribute.Private;
-    phoneNumber: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
