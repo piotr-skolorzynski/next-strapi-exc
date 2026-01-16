@@ -3,13 +3,14 @@ import { useState } from "react";
 import TextInput from "../TextInput";
 import axios from "axios";
 import { allDataFilledIn } from "@/utils/validation.utils";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
-const SignupForm = ({ infoText, headline, buttonLabel }) => {
+const SignupForm = ({ infoText, headline, buttonLabel, pricing }) => {
   const [formData, setFormData] = useState({
-    firstName: "ka",
-    lastName: "picl",
-    phone: "2344234",
-    email: "ka.com",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
   });
 
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -49,8 +50,13 @@ const SignupForm = ({ infoText, headline, buttonLabel }) => {
     <section className="signup-form">
       <div className="signup-form__info">
         <h3 className="signup-form__headline">{headline}</h3>
-        {/* TODO: rich text wyświetl później jako renderer starpi component */}
-        {infoText}
+
+        <BlocksRenderer
+          content={infoText}
+          blocks={{
+            paragraph: ({ children }) => <p className="copy">{children}</p>,
+          }}
+        />
       </div>
 
       {showConfirmation ? (
@@ -96,6 +102,20 @@ const SignupForm = ({ infoText, headline, buttonLabel }) => {
           <button type="submit" className="btn btn--medium btn--turquoise">
             {buttonLabel || "Stay in touch!"}
           </button>
+
+          {pricing && (
+            <div className="signup-form__pricing">
+              <h3>Pricing</h3>
+              <p className="copy">
+                Single Room:{" "}
+                <span className="bold">{pricing.singlePrice}€ per person</span>
+              </p>
+              <p className="copy">
+                Shared Room:{" "}
+                <span className="bold">{pricing.sharedPrice}€ per person</span>
+              </p>
+            </div>
+          )}
         </form>
       )}
     </section>

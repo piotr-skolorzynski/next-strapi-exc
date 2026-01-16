@@ -60,3 +60,9 @@ export function formatDate(dateString) {
 export function extractImageUrl(imageData) {
   return BASE_URL + imageData.url;
 }
+
+export async function fetchIndividualEvent(eventId) {
+  const response = await axios.get(`${BASE_URL}/api/events/${eventId}`);
+
+  return response.data.data;
+}
