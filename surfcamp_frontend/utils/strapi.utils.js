@@ -66,3 +66,13 @@ export async function fetchIndividualEvent(eventId) {
 
   return response.data.data;
 }
+
+export function generateSignupPayload(formData, eventId) {
+  if (!eventId) {
+    return {
+      data: { ...formData, isGeneralInterest: true },
+    };
+  } else {
+    return { data: { ...formData, event: { connect: [eventId] } } };
+  }
+}

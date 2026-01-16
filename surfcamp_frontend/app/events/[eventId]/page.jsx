@@ -5,8 +5,8 @@ import {
 } from "@/utils/strapi.utils";
 
 const page = async ({ params }) => {
-  const { eventId: slug } = params;
-  const event = await fetchIndividualEvent(slug);
+  const { eventId } = params;
+  const event = await fetchIndividualEvent(eventId);
   const pricing = {
     singlePrice: event.singlePrice,
     sharedPrice: event.sharedPrice,
@@ -19,6 +19,7 @@ const page = async ({ params }) => {
         infoText={event.description}
         buttonLabel="Sign Up"
         pricing={pricing}
+        eventId={eventId}
       />
     </main>
   );

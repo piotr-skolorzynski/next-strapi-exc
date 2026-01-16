@@ -1,11 +1,18 @@
 "use client";
 import { useState } from "react";
 import TextInput from "../TextInput";
-import axios from "axios";
 import { allDataFilledIn } from "@/utils/validation.utils";
+import { generateSignupPayload } from "@/utils/strapi.utils";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import axios from "axios";
 
-const SignupForm = ({ infoText, headline, buttonLabel, pricing }) => {
+const SignupForm = ({
+  infoText,
+  headline,
+  buttonLabel,
+  pricing,
+  eventId = null,
+}) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -23,9 +30,7 @@ const SignupForm = ({ infoText, headline, buttonLabel, pricing }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = {
-      data: { ...formData, isGeneralInterest: true },
-    };
+    const payload = generateSignupPayload(formData, eventId);
 
     if (allDataFilledIn(formData)) {
       try {
