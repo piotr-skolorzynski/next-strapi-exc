@@ -1,25 +1,42 @@
 "use client";
 import { useState } from "react";
+import axios from "axios";
 
 const SubscribeToNewsletter = () => {
   const [email, setEmail] = useState("");
   const [hasSignedUp, setHasSignedUp] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const onEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (email.length) {
-      //TODO: send email to strapi
-      setHasSignedUp(true);
+    try {
+      if (email.length) {
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/newsletter-signups`,
+          {
+            data: { email },
+          }
+        );
+
+        setHasSignedUp(true);
+      }
+    } catch (error) {
+      console.log(error);
+      setShowError(true);
     }
   };
 
   return (
     <section className="newsletter">
-      {hasSignedUp ? (
+      {showError ? (
+        <h4 className="newsletter__thanks">
+          Could not sign up for the newsletter
+        </h4>
+      ) : hasSignedUp ? (
         <h4 className="newsletter__thanks">Thank you for subscribing!</h4>
       ) : (
         <>
