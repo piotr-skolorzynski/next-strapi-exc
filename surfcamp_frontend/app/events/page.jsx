@@ -1,6 +1,13 @@
 import SignupForm from "../_components/Events/SignupForm";
+import { fetchAllEvents } from "@/utils/strapi.utils";
 
-const Events = () => {
+const Events = async () => {
+  const allEvents = await fetchAllEvents();
+  console.log("-----------------------------------------------");
+  console.log(allEvents);
+
+  console.log("-----------------------------------------------");
+
   const infoText = (
     <>
       <p className="copy">

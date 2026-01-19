@@ -1,5 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
+import qs from "qs";
 
 const BASE_URL = process.env.STRAPI_BASE_URL || "http://localhost:1337";
 
@@ -75,4 +76,31 @@ export function generateSignupPayload(formData, eventId) {
   } else {
     return { data: { ...formData, event: { connect: [eventId] } } };
   }
+}
+
+export async function fetchAllEvents(params) {
+  const query = qs.stringify(
+    {
+      pagination: {
+        start: 0,
+        limit: 12,
+      },
+      sort: ["startingDate:asc"],
+      filters: {
+        startingDate: {
+          $gt: new Date(),
+        },
+      },
+      populate: {
+        image: {
+          populate: "*",
+        },
+      },
+    },
+    { encodeValuesOnly: true }
+  );
+
+  const response = await axios.get(`${BASE_URL}/api/events?${query}`);
+
+  return response.data.data;
 }
