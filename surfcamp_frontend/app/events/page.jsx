@@ -1,12 +1,9 @@
 import SignupForm from "../_components/Events/SignupForm";
+import FeaturedEvent from "@/app/_components/FeaturedItems/FeaturedEvent";
 import { fetchAllEvents } from "@/utils/strapi.utils";
 
 const Events = async () => {
   const allEvents = await fetchAllEvents();
-  console.log("-----------------------------------------------");
-  console.log(allEvents);
-
-  console.log("-----------------------------------------------");
 
   const infoText = (
     <>
@@ -54,6 +51,14 @@ const Events = async () => {
   return (
     <main className="events-page">
       <SignupForm infoText={infoText} headline={headline} />
+
+      <h3 className="featured-items__headline">Upcoming camps & events</h3>
+
+      <div className="featured-items__container">
+        {allEvents.map((event) => (
+          <FeaturedEvent event={event} />
+        ))}
+      </div>
     </main>
   );
 };

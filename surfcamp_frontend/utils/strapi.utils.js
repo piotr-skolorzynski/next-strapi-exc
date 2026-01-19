@@ -2,7 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import qs from "qs";
 
-const BASE_URL = process.env.STRAPI_BASE_URL || "http://localhost:1337";
+export const BASE_URL = process.env.STRAPI_BASE_URL || "http://localhost:1337";
 
 export async function fetchDataFromStrapi(endpoint, params = "pLevel=5") {
   const url = `${BASE_URL}/api/${endpoint}?${params}`;
@@ -78,27 +78,34 @@ export function generateSignupPayload(formData, eventId) {
   }
 }
 
-export async function fetchAllEvents(params) {
-  const query = qs.stringify(
-    {
-      pagination: {
-        start: 0,
-        limit: 12,
-      },
-      sort: ["startingDate:asc"],
-      filters: {
-        startingDate: {
-          $gt: new Date(),
-        },
-      },
-      populate: {
-        image: {
-          populate: "*",
-        },
+function createEventQueryObject(eventIdToExlude) {
+  const queryObject = {
+    pagination: {
+      start: 0,
+      limit: 12,
+    },
+    sort: ["startingDate:asc"],
+    filters: {
+      startingDate: {
+        $gt: new Date(),
       },
     },
-    { encodeValuesOnly: true }
-  );
+    populate: {
+      image: {
+        populate: "*",
+      },
+    },
+  };
+
+  if (eventIdToExlude) {
+    queryObject.filters.documentId = { $ne: eventIdToExlude };
+  }
+
+  return qs.stringify(queryObject, { encodeValuesOnly: true });
+}
+
+export async function fetchAllEvents(eventIdToExclude = null) {
+  const query = createEventQueryObject(eventIdToExclude);
 
   const response = await axios.get(`${BASE_URL}/api/events?${query}`);
 
